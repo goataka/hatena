@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 // Parse frontmatter from markdown file
 function parseFrontmatter(content) {
-  const frontmatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const frontmatterRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
   
   if (!match) {
@@ -18,7 +18,7 @@ function parseFrontmatter(content) {
   const body = match[2];
   
   const metadata = {};
-  frontmatter.split('\n').forEach(line => {
+  frontmatter.split(/\r?\n/).forEach(line => {
     const colonIndex = line.indexOf(':');
     if (colonIndex > 0) {
       const key = line.substring(0, colonIndex).trim();
@@ -87,6 +87,7 @@ function escapeXml(text) {
 }
 
 // Upload article to Hatena Blog
+// Note: Uses native fetch API available in Node.js 18+
 async function uploadToHatena(articlePath, hatenaId, blogId, apiKey) {
   const content = fs.readFileSync(articlePath, 'utf8');
   const { metadata, content: body } = parseFrontmatter(content);

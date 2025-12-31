@@ -22,13 +22,6 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Get changed files
-        id: changed-files
-        run: |
-          echo "files<<EOF" >> $GITHUB_OUTPUT
-          git diff --name-only HEAD^ HEAD | grep '^articles/.*\.md$' || true
-          echo "EOF" >> $GITHUB_OUTPUT
-      
       - name: Upload articles to Hatena Blog
         env:
           HATENA_ID: ${{ secrets.HATENA_ID }}
