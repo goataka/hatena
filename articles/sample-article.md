@@ -1,7 +1,7 @@
 ---
 title: はてなブログ記事のサンプル
 categories: [技術, ブログ]
-draft: false
+draft: true
 ---
 
 # はてなブログへようこそ
