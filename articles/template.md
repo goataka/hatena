@@ -1,7 +1,7 @@
 ---
 title: ここに記事のタイトルを書く
 categories: [カテゴリー1, カテゴリー2]
-draft: false
+draft: true
 ---
 
 # ここに記事の内容を書く
